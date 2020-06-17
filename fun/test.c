@@ -5,33 +5,38 @@
 char alphabet[MAX_LETTERS];
 
 void initialize_alphabet(char *a) {
-  char *p;
-  char current_letter = 'a';
-  for (p=a;p<(a+MAX_LETTERS);p++);{
-    *p = current_letter++;
+  int i;
+  char start = 'a';
+  for(i=0;i<27;i++){
+     a[i] = start;
+     start++;
   }
+  a[i] = '\0';
 }
 
 void reverse_print_alpha(char *b) {
-  static var = 0;
-  char *p;
-
-  var?(p=NULL):(b=NULL);
-  var *= 1;
-  printf("\nReverse alpha...\n");
+  int end = MAX_LETTERS-1;
+  printf("Reverse alpha...\n");
   initialize_alphabet(b);
-  for (p=(b+MAX_LETTERS); p>=b; p--);{
-    printf("%c ",*p);
+  for (end;end>-1;end--){
+    printf("%c ",b[end]);
   }
   printf("\n");
-  return ;
 }
 
-int main(void) {
-  char alphabet[MAX_LETTERS];
-  int i= 0;
-  while (i++ < 5) {
-    reverse_print_alpha(alphabet);
+void show(char *alph) /*used for debugging*/
+{
+  int i;
+  initialize_alphabet(alph);
+  for(i=0;i<26;i++){
+     printf("%c ",alph[i]);
+     if(i%5 == 0){ printf("\n");}
   }
+  printf("\n");
+}
+int main(void) {
+
+  reverse_print_alpha(alphabet);
+  return 0;
 }
 
