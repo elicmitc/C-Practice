@@ -43,8 +43,8 @@ int main(void){
     //i Read characters into array m until the letter z is encountered.
     char m[1000];
     printf("Insert your characters into the array, when done press eneter. Z and any values after z is entered will not be stored. \n");
-    scanf(" %[^z,Z]", m);
-    printf("The characters you entered are %s \n\n", &m);
+    scanf(" %[^\n,a-y]s",m);
+    printf("The characters you entered are: %s \n\n", m);
 
     //j Read a time of the form hh-mm-ss, storing the parts of the time in the integer variables hour, minute and second. 
     //Skip the dash (-) in the input stream. Use the assignment suppression character.
@@ -66,7 +66,7 @@ int main(void){
     char s[11];
     printf("\nPlease enter the \"Characters\", with the double quotes here: ");
 
-    scanf("\" %[^\"]", s);
+    scanf(" %[^\"]", s);
     printf("\nThe string inserted is %s\n", s);
 
     /*    
