@@ -6,11 +6,18 @@ char lastName[ 15 ];
 char firstName[ 15 ]; 
 char major[ 10 ]; 
 double gpa;
-};
+}individual[20];
+
 
 int main(void) {
-    FILE *cfPtr; //file pointer
+    int i;
+    for(i=0;i<20;i++)
+    {
+        individual[i] =  {"unassigned", "", "n/a", 0};
 
+    }
+    FILE *cfPtr; //file pointer
+    
     if((cfPtr = fopen("nameage.dat", "wb"))==NULL){
         puts("File could not be opened.");
     }
@@ -19,10 +26,14 @@ int main(void) {
         struct student blankStudent = {"unassigned", "", "n/a", 0};
         // fill in the even structures with data 
         unsigned int i;
+	char **fnames = {"Smith","Garcia","Lee","Williams","Johnson","Lopez","Jones","Anderson","Miller","Brown"}
+	char **lnames = {"James","Mary","John","Patricia","Robert","Jennifer","Micheal","Linda","William","Jessica"}
+	char **major = {"Info","Comp Sci","Biology","Account","Marketing","Chemistry","Engineer","Management","Info","Comp Sci"}
+        double **GPA = {3.5,3.8,3.9,3.5,3.6,3.8,3.7,3.0,3.0,3.75}
         for(i = 1; i < 21; ++i){
             fwrite(&blankStudent, sizeof(struct student), 1, cfPtr);
         }
-    
+        
         for(i = 1; i < 21; ++i){
         struct student studentTwo = {"Smith", "James", "Info", 3.80 };
         if(i == 2){
@@ -78,7 +89,7 @@ int main(void) {
         scanf(" %s", qMajor);
 //issues start here 
         //search database for a match 
-        while(fread(student ,sizeof(struct student), 1, cfPtr)){}
+        while(fread(studentOne ,sizeof(struct student), 1, cfPtr)){
             for(i=0; i<20; ++i){
                 //name & major match 
                 if(strcmp(lname, cfPtr->lastName) == 0 && strcmp(qMajor, cfPtr->major)== 0){
@@ -90,11 +101,11 @@ int main(void) {
                 
                 //no match above name match
                 else if(strcmp(lname, student[i].lastName) = 0){
-                    printf(("%s", student[i]);
+                    printf(("%s", student[i]));
                 }
                 // still no match, string match 
                 else if(strcmp(qMajor, student[i].major) = 0){
-                    printf(("%s", student[i]);
+                    printf(("%s", student[i]));
                 }
 
                 //no matches at all 
@@ -107,7 +118,7 @@ int main(void) {
             int j;
             for(i= 0; i<sizeof(student); ++i){
                 for(i= 0; i<sizeof(student); ++i){
-                    if(strcmp(student[i], studdent[j])== 0){
+                    if(strcmp(student[i], student[j])== 0){
                         student[j] = student[i];
 
                     }
@@ -115,7 +126,7 @@ int main(void) {
             }      
         }
     //close file   
-    fclose (cfPtr);
+    fclose(cfPtr);
     }
 //issues end here 
 
