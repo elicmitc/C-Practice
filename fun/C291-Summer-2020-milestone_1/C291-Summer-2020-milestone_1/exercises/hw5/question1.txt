@@ -1,0 +1,25 @@
+//Part 1:
+
+a) universirtyRecord.name
+b) (*universirtyPtr).name
+c) universirtyRecord.abbreviatedName
+d) (*universirtyPtr).abbreviatedName 
+e) universityRecord.abbreviatedName = ""+;      
+   printf("%c", universityRecov.abbreviatedName);
+f) universityrecord.physical_address.phoneNumber
+g) universityPtr->physical_address.address
+h) universityRecord.physical_addeess.zipCode
+i) universityPtr->physical_address.zipCode 
+j) int i;
+   for(i=0; i<5; ++i){
+   printf(" %d", (universityReecod+i).physical_address.zipCode; 
+}
+k)int i;
+      for(i=0; i<5; ++i){
+      printf(" %d", (universityPtr+i)->physical_address.zipCode; 
+}
+
+
+//Part 3
+
+in c file 
