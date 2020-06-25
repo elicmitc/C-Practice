@@ -15,9 +15,9 @@ struct person
 int main () 
 { 
 	FILE *outfile; 
-	
+	int i=1;	
 	// open file for writing 
-	outfile = fopen ("person.dat", "w"); 
+	outfile = fopen ("person.txt", "w"); 
 	if (outfile == NULL) 
 	{ 
 		fprintf(stderr, "\nError opend file\n"); 
@@ -26,10 +26,19 @@ int main ()
 
 	struct person input1 = {1, "rohan", "sharma"}; 
 	struct person input2 = {2, "mahendra", "dhoni"}; 
-	
+	struct person *pointer;
+	pointer = malloc(sizeof(struct person)*2);	
+	pointer->id = 5;
+	strcpy(pointer->fname,"Elijah");
+	strcpy(pointer->lname,"Mitchell");
+	(pointer+i)->id=10;
+	strcpy((pointer+i)->fname,"Jared");
+	strcpy((pointer+i)->lname,"Michalke");
 	// write struct to file 
-	fwrite (&input1, sizeof(struct person), 1, outfile); 
-	fwrite (&input2, sizeof(struct person), 1, outfile); 
+	printf("%s %s\n",pointer->fname,pointer->lname);
+	fwrite (pointer, sizeof(struct person), 2, outfile);
+	//fwrite (&input1, sizeof(struct person), 1, outfile); 
+//	fwrite (&input2, sizeof(struct person), 1, outfile); 
 	
 	if(fwrite != 0) 
 		printf("contents to file written successfully !\n"); 
