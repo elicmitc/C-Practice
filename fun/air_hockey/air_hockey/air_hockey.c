@@ -10,7 +10,7 @@
 int n;
 char level;
 char startC; 
-int player_1;
+int player_1,read_char;
 int player_2;
 int rnd = 0;
 int games1=0;
@@ -44,7 +44,7 @@ int start(void){
 }
 
 void print_score(void){
-  mvprintw("Scores: Player 1: %d \t Player 2: %d", player_1, player_2);
+  mvprintw(5,5,"Scores: Player 1: %d \t Player 2: %d", player_1, player_2);
 }
 
 // Main Game function
@@ -94,8 +94,7 @@ void air_hockey(){
     //printf("Scores: Player 1: %d \t Player 2: %d", player_1, player_2);
        // Move the current piece 
     if ((arrow = read_escape(&c)) != NOCHAR) {
-        switch (arrow) {
-
+        switch (read_escape(&arrow)) {
           // Functionality for Left Arrow Key that controls the bottom slider
           case LEFT:
             mvprintw(1, 5,"L");
@@ -207,7 +206,40 @@ void air_hockey(){
               draw_zone(z);
             }
             break;
-
+	  case REGCHAR:
+	     
+		/*this creates the pause menu bones*/
+		if(arrow == 'p' || arrow == 'P')
+		{
+		  initscr();
+		  init_pair(1,COLOR_MAGENTA, COLOR_RED);
+		  attron(COLOR_PAIR(1));
+		  mvprintw(7,5,"Paused     ");
+		  mvprintw(8,5,"Menu:");
+		  refresh();
+		  attroff(COLOR_PAIR(1));
+		  mvprintw(9,5,"things filled in here..");
+		}
+		/*lets you scroll through the menu*/
+		int where =0;
+/*		while(read_char != 'q' && read_char != 'Q')
+		{
+		
+		}
+*/
+		if(arrow == 'q' || arrow == 'Q')
+		{
+			initscr();
+			start_color();
+			init_pair(2,COLOR_MAGENTA,COLOR_RED);
+			attron(COLOR_PAIR(2));
+			mvprintw(21,40,"GAME OVER");
+			mvprintw(22,40,"Press Any Key to Exit Game");
+			refresh();
+			attroff(COLOR_PAIR(2));
+			exit(0);
+		}
+	    break; 
           default:
             mvprintw(1, 5,"%c", c);
             break;
