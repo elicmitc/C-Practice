@@ -1,9 +1,0 @@
-struct university {
-  char name[ 20 ];
-  char* abbreviatedName; unsigned int numberofStudents;
-  struct {char phoneNumber[ 11 ]; char address[ 60 ];
-    char city[ 20 ]; char state[ 3 ];
-    int zipCode;
-  } physical_address;
-} universityRecord, *universityPtr;
- universityPtr = &universityRecord;
