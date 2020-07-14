@@ -2,12 +2,19 @@
 #include<stdlib.h>
 #include<assert.h>
 #include<string.h>
+void clear_stdin(void)
+{
+	int c;
+	while((c = getchar()) != '\n' && c != EOF) {}
+
+}
 void print_class(void)
 {
 	char filename[20],rostername[20];
 	printf("Class name to print: ");
 	scanf(" %s",filename);
 	strcpy(rostername,filename);
+	clear_stdin();
 	strcat(filename,".txt");
 	FILE *infile;
 	struct students input;
@@ -36,6 +43,7 @@ void save_class(struct students **pointer,int size)
 	point = *pointer;
 	printf("Filename to save roster: ");
 	scanf(" %s", fname);
+        clear_stdin();
 	strcat(fname,".txt");
 	ptr = fopen(fname,"w");
 	assert(ptr);
@@ -57,6 +65,7 @@ int add_class(struct students **pointer)
 	struct students *rost_tmp;
 	printf("How many students are in your class.\n");
 	scanf(" %d",&c_size);
+        clear_stdin();
 	if(c_size == 0)
 	{
 		printf("Empty class, returning to menu.\n");
@@ -71,10 +80,11 @@ int add_class(struct students **pointer)
 		strcpy((rost_tmp+i)->first_name,name);
 		printf("%s's last name: ",(rost_tmp+i)->first_name);
 		scanf(" %s",name);
+      		clear_stdin();
 		strcpy((rost_tmp+i)->last_name,name);
 		printf("%s %s's age: ",(rost_tmp+i)->first_name,(rost_tmp+i)->last_name);
 		scanf(" %d",&((rost_tmp+i)->age));
-
+      		clear_stdin();
 	}
 	puts("Class Roster Complete.");
 	*pointer = rost_tmp;

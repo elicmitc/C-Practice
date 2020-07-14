@@ -7,7 +7,7 @@
  
 int main(void)
 {
-   char input,save;
+   char input[2],save;
    student *pointer;
    int c_size=0; 
    while(1)
@@ -16,15 +16,17 @@ int main(void)
       printf("[1] Add Class\n");
       printf("[2] Print Class\n");
       printf("[3] Exit\n");
-      
-      scanf(" %c",&input);
-      switch(input)
+      fgets(input, sizeof(input), stdin); 
+      clear_stdin();
+      //scanf(" %c",&input);
+      switch(input[0])
       {
 	case '1':
 	  printf("Adding Class...\n");
           c_size = add_class(&pointer);
 	  printf("Would you like to save this class?[Y][N] ");
 	  scanf(" %c",&save);
+      	  clear_stdin();
 	  if(save == 'Y' || save == 'y')
 	  {
 		save_class(&pointer,c_size);
@@ -33,6 +35,7 @@ int main(void)
 	  {
 		puts("Your class wont be saved, do you want your roster saved?[Y][N]");
 	  	scanf(" %c",&save);
+      		clear_stdin();
 	        if(save == 'Y' || save == 'y')
 	        {
 			save_class(&pointer,c_size);
@@ -49,7 +52,8 @@ int main(void)
 	  exit(0);
 	  break;
         default:
-	  printf("default\n");
+	  printf("No valid input read.\n");
+	  input[0] = 'k';
 	  break;
 	
       }
